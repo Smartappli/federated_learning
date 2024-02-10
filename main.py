@@ -10,13 +10,13 @@ from syft import autocache
 def launch_node():
     sy.requires(SYFT_VERSION)
 
-    print(f"{sy.__version__ = }")
+    print(f"Version of PySyft : {sy.__version__ }")
 
     print ("\n--- Démarrage du noeud Humani ---")
     node_humani = sy.orchestra.launch(name="do-humani",  local_db=True, dev_mode=True, reset=True)
     root_domain_humani_client = node_humani.login(email="info@openmined.org", password="changethis")
     root_domain_humani_client.register(
-        name="Jane Doe",
+       name="Jane Doe",
        email="janedoe@caltech.edu",
        password="abc123",
        password_verify="abc123",
@@ -28,7 +28,7 @@ def launch_node():
     node_epicura = sy.orchestra.launch(name="do-epicura", local_db=True, dev_mode=True, reset=True)
     root_domain_epicura_client = node_epicura.login(email="info@openmined.org", password="changethis")
     root_domain_epicura_client.register(
-        name="Jane Doe",
+       name="Jane Doe",
        email="janedoe@caltech.edu",
        password="abc123",
        password_verify="abc123",
@@ -40,15 +40,13 @@ def launch_node():
     node_vivalia = sy.orchestra.launch(name="do-vivalia", local_db=True, dev_mode=True, reset=True)
     root_domain_vivalia_client = node_vivalia.login(email="info@openmined.org", password="changethis")
     root_domain_vivalia_client.register(
-        name="Jane Doe",
+       name="Jane Doe",
        email="janedoe@caltech.edu",
        password="abc123",
        password_verify="abc123",
        institution="Caltech",
        website="https://www.caltech.edu/",
     )
-
-
 
     ds_client = node_humani.login(email="janedoe@caltech.edu", password="abc123")
 
@@ -83,6 +81,7 @@ def launch_node():
     age_sum = mock["Age"].mean()
     print(age_sum)
 
+    print ("--- Destruction des Domain Servers ---")
     node_humani.land()
     node_epicura.land()
     node_vivalia.land()
